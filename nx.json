@@ -32,13 +32,6 @@
     },
     "client": {
       "tags": ["frontend"]
-    },
-    "client-e2e": {
-      "tags": ["end-2-end-tests"],
-      "implicitDependencies": ["client"]
-    },
-    "types": {
-      "tags": ["module"]
     }
   }
 }
