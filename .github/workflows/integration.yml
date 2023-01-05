@@ -1,5 +1,9 @@
 name: Integration Checks
-on: push
+on:
+push:
+    branches-ignore:
+      - main
+      - develop
 jobs:
   ci:
     runs-on: ubuntu-latest
