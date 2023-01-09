@@ -19,3 +19,8 @@ export class UserDto {
 export class EmailVerifyDto {
   email_verify: boolean;
 }
+
+export class UserLogin {
+  username: string;
+  password: string;
+}
