@@ -10,7 +10,7 @@ export class JwtAuthGuard extends AuthGuard("jwt-user") {
   constructor() {
     super();
   }
-  async canActivate(context: ExecutionContext): Promise<any> {
+  canActivate(context: ExecutionContext) {
     const req = context.switchToHttp().getRequest();
     const token = req.headers.access_token;
     if (!token) {

@@ -37,7 +37,7 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Get("checkUser")
-  test() {
-    return "check user";
+  cuerrentUser(@CurrentUser() user) {
+    return user;
   }
 }
