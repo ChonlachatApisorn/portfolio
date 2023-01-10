@@ -32,4 +32,12 @@ export class UserService {
   list() {
     return this.model.find().exec();
   }
+
+  findOne(username: string) {
+    return this.model.findOne({ username: username }).exec();
+  }
+
+  findById(id: string) {
+    return this.model.findById(id).exec();
+  }
 }
