@@ -33,4 +33,9 @@ export class UserController {
   delete(@Param("id") id: string) {
     return this.service.delete(id);
   }
+
+  @Post("verifyEmail")
+  verifyEmail(@Body("email") email: string) {
+    return this.service.verifyEmail(email);
+  }
 }
