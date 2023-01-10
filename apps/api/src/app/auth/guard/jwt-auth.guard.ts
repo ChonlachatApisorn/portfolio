@@ -14,7 +14,7 @@ export class JwtAuthGuard extends AuthGuard("jwt-user") {
     const req = context.switchToHttp().getRequest();
     const token = req.headers.access_token;
     if (!token) {
-      throw new UnauthorizedException("eiei");
+      throw new UnauthorizedException();
     }
     return super.canActivate(context);
   }
