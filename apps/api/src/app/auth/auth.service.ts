@@ -23,7 +23,7 @@ export class AuthService {
     const playload = { username: user.username, sub: user._id };
     return {
       access_token: this.jwtService.sign(playload, {
-        secret: process.env.secret,
+        secret: "secret",
       }),
     };
   }
