@@ -34,7 +34,7 @@ export class UserController {
     @Body("email") email: string,
     @CurrentUser() user: UserData
   ) {
-    const userId = user._id.toHexString();
+    const userId = user._id.toString();
     const update = await this.service.updateEmail(userId, email);
     await this.service.verifyEmail(email, userId);
     return update;
