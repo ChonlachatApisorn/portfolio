@@ -4,6 +4,10 @@ import { Model } from "mongoose";
 import { UserData, UserDocument } from "./schema/user.schema";
 import * as bcrypt from "bcryptjs";
 import { UserDto } from "./dto/user.dto";
+import { createTransport } from "nodemailer";
+import * as path from "path";
+import * as fs from "fs";
+import * as handlebars from "handlebars";
 
 @Injectable()
 export class UserService {
@@ -18,6 +22,7 @@ export class UserService {
       ...dto,
       username: dto.username,
       password: bcrypt.hashSync(dto.password, salt),
+      email_verify: false,
     });
   }
 
@@ -39,5 +44,56 @@ export class UserService {
 
   findById(id: string) {
     return this.model.findById(id).exec();
+  }
+
+  confirmEmail(id: string) {
+    return this.model.findByIdAndUpdate(
+      id,
+      { $set: { email_verify: true } },
+      { new: true }
+    );
+  }
+
+  updateEmail(id: string, email: string) {
+    return this.model.findByIdAndUpdate(
+      id,
+      { $set: { email: email } },
+      { new: true }
+    );
+  }
+
+  async verifyEmail(email: string, id: string) {
+    const srcPath = path.resolve(
+      __dirname,
+      "assets/template/email-verify.template.hbs"
+    );
+    const readHtmlFile = fs.readFileSync(srcPath, "utf-8");
+    const template = handlebars.compile(readHtmlFile);
+    const username = (await this.findById(id)).username;
+    const api = `http://localhost:3000/api/user/confirm-email/${id}`;
+    const htmlToSend = template({ api, username });
+
+    const transporter = createTransport({
+      host: process.env.HOST,
+      service: process.env.SERVICE,
+      auth: {
+        user: process.env.SENDER_EMAIL,
+        pass: process.env.SENDER_PASSWORD,
+      },
+    });
+
+    const option = {
+      from: process.env.SENDER_EMAIL,
+      to: email,
+      subject: "Verify Your Email",
+      html: htmlToSend,
+    };
+
+    try {
+      await transporter.sendMail(option);
+    } catch (err) {
+      throw new err();
+    }
+    return;
   }
 }
