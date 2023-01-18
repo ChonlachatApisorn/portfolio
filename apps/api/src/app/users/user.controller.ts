@@ -6,17 +6,24 @@ import {
   Param,
   Post,
   Put,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { UserDto } from "./dto/user.dto";
 import { CurrentUser } from "../auth/decorator/auth.decorator";
 import { UserData } from "./schema/user.schema";
 import { JwtAuthGuard } from "../auth/guard/jwt-auth.guard";
+import { UploadService } from "../upload/upload.service";
+import { FileInterceptor } from "@nestjs/platform-express";
 
 @Controller("user")
 export class UserController {
-  constructor(private service: UserService) {}
+  constructor(
+    private service: UserService,
+    private uploadService: UploadService
+  ) {}
 
   @Post("create")
   create(@Body() dto: UserDto) {
@@ -53,5 +60,12 @@ export class UserController {
   @Get("confirm-email/:userId")
   async confirmEmail(@Param("userId") userId: string) {
     return this.service.confirmEmail(userId);
+  }
+
+  @Post("test/upload")
+  @UseInterceptors(FileInterceptor("file"))
+  async upload(@UploadedFile() file: Express.Multer.File) {
+    const uploadFile = await this.uploadService.upload(file);
+    console.log(uploadFile);
   }
 }
