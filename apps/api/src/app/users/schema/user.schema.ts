@@ -16,6 +16,9 @@ export class UserData extends BaseSchema {
   bio: string;
 
   @Prop()
+  profile_image: string;
+
+  @Prop()
   email: string;
 
   @Prop()

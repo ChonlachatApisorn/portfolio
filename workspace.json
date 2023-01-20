@@ -49,7 +49,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": ["backend"]
     },
     "client": {
       "root": "apps/client",
@@ -123,27 +124,8 @@
             "passWithNoTests": true
           }
         }
-      }
-    }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint",
-        "babel": true
       },
-      "component": {
-        "style": "scss"
-      },
-      "library": {
-        "style": "scss",
-        "linter": "eslint"
-      }
+      "tags": ["frontend"]
     }
-  },
-  "defaultProject": "client"
+  }
 }

@@ -11,6 +11,9 @@ export class SkillData extends BaseSchema {
   @Prop()
   skill_name: string;
 
+  @Prop()
+  skill_image: string;
+
   @Prop({ type: Types.ObjectId, ref: "UserData" })
   user_id: UserData | Types.ObjectId;
 }

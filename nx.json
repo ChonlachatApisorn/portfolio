@@ -26,12 +26,24 @@
       }
     ]
   },
-  "projects": {
-    "api": {
-      "tags": ["backend"]
-    },
-    "client": {
-      "tags": ["frontend"]
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "style": "scss",
+        "linter": "eslint"
+      }
     }
-  }
+  },
+  "defaultProject": "client"
 }
