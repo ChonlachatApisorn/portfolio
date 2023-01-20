@@ -19,6 +19,14 @@ export class SkillService {
     return this.model.findByIdAndUpdate(id, dto, { new: true });
   }
 
+  updateImage(id: string, imageUrl: string) {
+    return this.model.findByIdAndUpdate(
+      id,
+      { skill_image: imageUrl },
+      { new: true }
+    );
+  }
+
   delete(id: string) {
     return this.model.findByIdAndDelete(id);
   }
