@@ -30,7 +30,7 @@ export class UserService {
     return this.model.findByIdAndUpdate(id, dto, { new: true });
   }
 
-  updateImage(id: string, imageUrl: string) {
+  uploadImage(id: string, imageUrl: string) {
     return this.model.findByIdAndUpdate(
       id,
       { profile_image: imageUrl },

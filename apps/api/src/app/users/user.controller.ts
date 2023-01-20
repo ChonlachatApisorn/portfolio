@@ -62,13 +62,13 @@ export class UserController {
     return this.service.confirmEmail(userId);
   }
 
-  @Post("upload-image/:id")
+  @Put("upload-image/:id")
   @UseInterceptors(FileInterceptor("file"))
   async upload(
     @UploadedFile() file: Express.Multer.File,
     @Param("id") id: string
   ) {
     const imageUrl = await this.uploadService.upload(file);
-    return this.service.updateImage(id, imageUrl.url);
+    return this.service.uploadImage(id, imageUrl.url);
   }
 }

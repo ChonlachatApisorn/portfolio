@@ -43,7 +43,7 @@ export class SkillControll {
     @Param("id") id: string
   ) {
     const imageUrl = await this.uploadService.upload(file);
-    return this.service.updateImage(id, imageUrl.url);
+    return this.service.uploadImage(id, imageUrl.url);
   }
 
   @Delete("delete/:id")

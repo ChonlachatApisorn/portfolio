@@ -19,7 +19,7 @@ export class SkillService {
     return this.model.findByIdAndUpdate(id, dto, { new: true });
   }
 
-  updateImage(id: string, imageUrl: string) {
+  uploadImage(id: string, imageUrl: string) {
     return this.model.findByIdAndUpdate(
       id,
       { skill_image: imageUrl },
