@@ -1,6 +1,6 @@
 name: Integration Checks
 on:
-push:
+  push:
     branches-ignore:
       - main
       - develop
