@@ -8,6 +8,7 @@
     "start:client": "nx run client:serve",
     "build:client": "nx run client:build",
     "start:api": "nx run api:serve",
+    "start:api:prod": "node dist/apps/api/main",
     "build:api": "nx run api:build",
     "test:api": "nx run api:test",
     "lint": "nx workspace-lint && npx nx run-many --all --target=lint --parallel",

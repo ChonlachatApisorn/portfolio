@@ -1,0 +1,21 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/api/**"
+
+jobs:
+  deploy-to-server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Install Dependencies
+        run: npm install
+      - name: Build Production
+        run: npm run build:api
+      - name: Deploy prod api
+        run: |
+          curl -s "https://api.render.com/deploy/${{secrets.RENDER_SRV_API}}?key=${{secrets.RENDER_KEY_API}}"
