@@ -13,6 +13,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, "jwt-user") {
     });
   }
 
+  
   async validate(playload) {
     const user = this.userService.findById(playload.sub);
     if (!user) {
