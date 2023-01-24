@@ -23,7 +23,7 @@
     "@nrwl/cypress": "15.5.3",
     "@nrwl/eslint-plugin-nx": "15.5.3",
     "@nrwl/jest": "15.5.3",
-    "@nrwl/linter": "15.5.3",
+    "@nrwl/linter": "15.6.1",
     "@nrwl/nest": "15.5.3",
     "@nrwl/nx-cloud": "15.0.2",
     "@nrwl/tao": "15.5.3",
