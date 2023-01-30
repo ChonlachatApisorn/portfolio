@@ -1,7 +1,7 @@
 export function Login() {
   return (
     <div className="h-screen flex">
-      <div className="lg:flex w-full lg:w-1/2 justify-around items-center bg-[url(https://static.vecteezy.com/system/resources/previews/004/733/033/non_2x/hands-of-a-man-working-on-a-modern-laptop-banking-and-money-themes-on-a-blue-background-in-an-office-free-photo.jpg)]">
+      <div className="lg:flex w-full lg:w-1/2 justify-around items-center bg-[url(https://static.vecteezy.com/system/resources/previews/004/733/033/non_2x/hands-of-a-man-working-on-a-modern-laptop-banking-and-money-themes-on-a-blue-background-in-an-office-free-photo.jpg)] bg-cover bg-no-repeat bg-fixed bg-center">
         <div className="w-full mx-auto px-20 flex-col space-y-6 bg-black opacity-20 h-screen" />
         <div className="items-center absolute pr-56">
           <h1 className="text-white font-bold text-4xl font-sans">
