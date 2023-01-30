@@ -1,7 +1,7 @@
 export function Register() {
   return (
     <div className="h-screen flex">
-      <div className="flex w-full  justify-around items-center bg-[url(https://static.vecteezy.com/system/resources/previews/004/733/033/non_2x/hands-of-a-man-working-on-a-modern-laptop-banking-and-money-themes-on-a-blue-background-in-an-office-free-photo.jpg)]">
+      <div className="flex w-full justify-around items-center bg-[url(https://static.vecteezy.com/system/resources/previews/004/733/033/non_2x/hands-of-a-man-working-on-a-modern-laptop-banking-and-money-themes-on-a-blue-background-in-an-office-free-photo.jpg)] bg-cover bg-no-repeat bg-fixed bg-center">
         <div className="w-full mx-auto px-20 flex-col space-y-6 bg-black opacity-20 h-screen" />
         <div className="flex w-1/2 justify-center items-cente space-y-8 absolute">
           <div className="w-full px-8 md:px-32 lg:px-24">
@@ -9,9 +9,12 @@ export function Register() {
               <h1 className="text-gray-800 font-bold text-2xl mb-1">
                 You can join us!
               </h1>
-              <p className="text-sm font-normal text-gray-600 mb-8">
+              <p className="text-sm font-normal text-gray-600 mb-8 ml-1">
                 Enter your information
               </p>
+              <label htmlFor="email" className="text-xs font-semibold ml-2">
+                Email
+              </label>
               <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -32,10 +35,37 @@ export function Register() {
                   className=" pl-2 w-full outline-none border-none"
                   type="email"
                   name="email"
-                  placeholder="Email Address"
+                  placeholder="example@example.com"
                 />
               </div>
-              <div className="flex items-center border-2 mb-12 py-2 px-3 rounded-2xl ">
+              <label htmlFor="username" className="text-xs font-semibold ml-2">
+                Username
+              </label>
+              <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    className="heroicon-ui"
+                    d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z"
+                  />
+                </svg>
+                <input
+                  id="username"
+                  className=" pl-2 w-full outline-none border-none"
+                  type="text"
+                  name="username"
+                  placeholder="example"
+                />
+              </div>
+              <label htmlFor="password" className="text-xs font-semibold ml-2">
+                Password
+              </label>
+              <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 text-gray-400"
@@ -53,7 +83,7 @@ export function Register() {
                   type="password"
                   name="password"
                   id="password"
-                  placeholder="Password"
+                  placeholder="************"
                 />
               </div>
               <button
