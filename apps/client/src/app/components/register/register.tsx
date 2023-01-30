@@ -1,7 +1,37 @@
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export function Register() {
   const [image, setImage] = useState("");
+  const [data, setData] = useState({
+    username: "",
+    password: "",
+    email: "",
+    bio: "",
+    profile_image: "",
+  });
+  const backPage = useNavigate();
+  const url = `http://localhost:3000/api/user/create`;
+
+  async function handleOnSubmit(e: React.FormEvent<EventTarget>) {
+    e.preventDefault();
+    const dataUser = {
+      username: data.username,
+      password: data.password,
+      email: data.email,
+      bio: data.bio,
+      profile_image: data.profile_image,
+    };
+    await axios
+      .post(url, dataUser, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then(() => {
+        alert("You are now one of us !!");
+      })
+      .then(() => backPage("/login"));
+  }
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
@@ -15,7 +45,10 @@ export function Register() {
         <div className="w-full mx-auto px-20 flex-col space-y-6 bg-black opacity-20 h-screen" />
         <div className="flex w-1/2 justify-center items-cente space-y-8 absolute">
           <div className="w-full px-8 md:px-32 lg:px-24">
-            <form className="bg-white rounded-md shadow-2xl p-5">
+            <form
+              className="bg-white rounded-md shadow-2xl p-5"
+              onSubmit={handleOnSubmit}
+            >
               <h1 className="text-gray-800 font-bold text-2xl mb-1">
                 You can join us!
               </h1>
