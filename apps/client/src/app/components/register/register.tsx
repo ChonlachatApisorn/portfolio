@@ -1,7 +1,43 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { instant } from "../../provider/axios.instant";
+import { UserUrl } from "../../provider/api.constant";
 
 export function Register() {
   const [image, setImage] = useState("");
+  const [data, setData] = useState({
+    username: "",
+    password: "",
+    email: "",
+    bio: "",
+    profile_image: "",
+  });
+  const backPage = useNavigate();
+
+  function handleOnChange(
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) {
+    setData({ ...data, [e.target.name]: e.target.value });
+  }
+
+  function handleOnSubmit(e: React.FormEvent<EventTarget>) {
+    e.preventDefault();
+    const dataUser = {
+      username: data.username,
+      password: data.password,
+      email: data.email,
+      bio: data.bio,
+      profile_image: data.profile_image,
+    };
+    instant
+      .post(UserUrl.create, dataUser, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then(() => {
+        alert("You are now one of us !!");
+      })
+      .then(() => backPage("/login"));
+  }
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
@@ -15,7 +51,10 @@ export function Register() {
         <div className="w-full mx-auto px-20 flex-col space-y-6 bg-black opacity-20 h-screen" />
         <div className="flex w-1/2 justify-center items-cente space-y-8 absolute">
           <div className="w-full px-8 md:px-32 lg:px-24">
-            <form className="bg-white rounded-md shadow-2xl p-5">
+            <form
+              className="bg-white rounded-md shadow-2xl p-5"
+              onSubmit={handleOnSubmit}
+            >
               <h1 className="text-gray-800 font-bold text-2xl mb-1">
                 You can join us!
               </h1>
@@ -46,6 +85,7 @@ export function Register() {
                   type="email"
                   name="email"
                   placeholder="example@example.com"
+                  onChange={handleOnChange}
                 />
               </div>
               <label htmlFor="username" className="text-xs font-semibold ml-2">
@@ -70,6 +110,7 @@ export function Register() {
                   type="text"
                   name="username"
                   placeholder="example"
+                  onChange={handleOnChange}
                 />
               </div>
               <label htmlFor="password" className="text-xs font-semibold ml-2">
@@ -94,6 +135,7 @@ export function Register() {
                   name="password"
                   id="password"
                   placeholder="************"
+                  onChange={handleOnChange}
                 />
               </div>
               <label
@@ -138,6 +180,7 @@ export function Register() {
                   className=" pl-2 w-full outline-none border-none"
                   name="bio"
                   placeholder="example detail in bio"
+                  onChange={handleOnChange}
                 />
               </div>
               <button
