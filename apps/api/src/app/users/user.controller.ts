@@ -17,12 +17,14 @@ import { JwtAuthGuard } from "../auth/guard/jwt-auth.guard";
 import { UploadService } from "../upload/upload.service";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { CurrentUser } from "../decorators/user.decorator";
+import { LogUploadService } from "../log/upload/log.upload.service";
 
 @Controller("user")
 export class UserController {
   constructor(
     private service: UserService,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private logUploadService: LogUploadService
   ) {}
 
   @Post("create")
@@ -63,14 +65,15 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Put("upload-image")
+  @Post("upload-image")
   @UseInterceptors(FileInterceptor("file"))
   async upload(
     @UploadedFile() file: Express.Multer.File,
     @CurrentUser() user: UserData
   ) {
     const userId = user._id.toString();
-    const imageUrl = await this.uploadService.upload(file);
-    return this.service.uploadImage(userId, imageUrl.url);
+    const image = await this.uploadService.upload(file);
+    await this.logUploadService.logUpload(userId, image.name);
+    return image.url;
   }
 }
