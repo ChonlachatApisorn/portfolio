@@ -1,16 +1,7 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  UnauthorizedException,
-  UseGuards,
-} from "@nestjs/common";
+import { Body, Controller, Post, UnauthorizedException } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { UserDto } from "../users/dto/user.dto";
 import { UserService } from "../users/user.service";
-import { JwtAuthGuard } from "./guard/jwt-auth.guard";
-import { CurrentUser } from "./decorator/auth.decorator";
 
 @Controller("auth")
 export class AuthController {
@@ -33,11 +24,5 @@ export class AuthController {
       throw new UnauthorizedException("Password is incorrect");
     }
     return this.authService.login(user);
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Get("checkUser")
-  cuerrentUser(@CurrentUser() user) {
-    return user;
   }
 }

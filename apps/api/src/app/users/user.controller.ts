@@ -12,11 +12,11 @@ import {
 } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { UserDto } from "./dto/user.dto";
-import { CurrentUser } from "../auth/decorator/auth.decorator";
 import { UserData } from "./schema/user.schema";
 import { JwtAuthGuard } from "../auth/guard/jwt-auth.guard";
 import { UploadService } from "../upload/upload.service";
 import { FileInterceptor } from "@nestjs/platform-express";
+import { CurrentUser } from "../decorators/user.decorator";
 
 @Controller("user")
 export class UserController {
@@ -62,13 +62,15 @@ export class UserController {
     return this.service.confirmEmail(userId);
   }
 
-  @Put("upload-image/:id")
+  @UseGuards(JwtAuthGuard)
+  @Put("upload-image")
   @UseInterceptors(FileInterceptor("file"))
   async upload(
     @UploadedFile() file: Express.Multer.File,
-    @Param("id") id: string
+    @CurrentUser() user: UserData
   ) {
+    const userId = user._id.toString();
     const imageUrl = await this.uploadService.upload(file);
-    return this.service.uploadImage(id, imageUrl.url);
+    return this.service.uploadImage(userId, imageUrl.url);
   }
 }
