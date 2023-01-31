@@ -65,7 +65,7 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Put("upload-image")
+  @Post("upload-image")
   @UseInterceptors(FileInterceptor("file"))
   async upload(
     @UploadedFile() file: Express.Multer.File,
