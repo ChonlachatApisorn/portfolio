@@ -1,6 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { instant } from "../../provider/axios.instant";
+import { UserUrl } from "../../provider/api.constant";
 
 export function Register() {
   const [image, setImage] = useState("");
@@ -12,9 +13,14 @@ export function Register() {
     profile_image: "",
   });
   const backPage = useNavigate();
-  const url = `http://localhost:3000/api/user/create`;
 
-  async function handleOnSubmit(e: React.FormEvent<EventTarget>) {
+  function handleOnChange(
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) {
+    setData({ ...data, [e.target.name]: e.target.value });
+  }
+
+  function handleOnSubmit(e: React.FormEvent<EventTarget>) {
     e.preventDefault();
     const dataUser = {
       username: data.username,
@@ -23,8 +29,8 @@ export function Register() {
       bio: data.bio,
       profile_image: data.profile_image,
     };
-    await axios
-      .post(url, dataUser, {
+    instant
+      .post(UserUrl.create, dataUser, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then(() => {
@@ -79,6 +85,7 @@ export function Register() {
                   type="email"
                   name="email"
                   placeholder="example@example.com"
+                  onChange={handleOnChange}
                 />
               </div>
               <label htmlFor="username" className="text-xs font-semibold ml-2">
@@ -103,6 +110,7 @@ export function Register() {
                   type="text"
                   name="username"
                   placeholder="example"
+                  onChange={handleOnChange}
                 />
               </div>
               <label htmlFor="password" className="text-xs font-semibold ml-2">
@@ -127,6 +135,7 @@ export function Register() {
                   name="password"
                   id="password"
                   placeholder="************"
+                  onChange={handleOnChange}
                 />
               </div>
               <label
@@ -171,6 +180,7 @@ export function Register() {
                   className=" pl-2 w-full outline-none border-none"
                   name="bio"
                   placeholder="example detail in bio"
+                  onChange={handleOnChange}
                 />
               </div>
               <button
