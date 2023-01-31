@@ -16,11 +16,8 @@ import { UserData } from "./schema/user.schema";
 import { JwtAuthGuard } from "../auth/guard/jwt-auth.guard";
 import { UploadService } from "../upload/upload.service";
 import { FileInterceptor } from "@nestjs/platform-express";
-<<<<<<< HEAD
 import { CurrentUser } from "../decorators/user.decorator";
-=======
 import { LogUploadService } from "../log/upload/log.upload.service";
->>>>>>> feat: log upload
 
 @Controller("user")
 export class UserController {
@@ -74,8 +71,9 @@ export class UserController {
     @UploadedFile() file: Express.Multer.File,
     @CurrentUser() user: UserData
   ) {
+    const userId = user._id.toString();
     const image = await this.uploadService.upload(file);
-    await this.logUploadService.logUpload(id, image.name);
+    await this.logUploadService.logUpload(userId, image.name);
     return image.url;
   }
 }
