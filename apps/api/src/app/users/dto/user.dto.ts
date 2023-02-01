@@ -13,7 +13,7 @@ export class UserDto {
 
   bio?: string;
 
-  email?: string;
+  email: string;
 }
 
 export class EmailVerifyDto {

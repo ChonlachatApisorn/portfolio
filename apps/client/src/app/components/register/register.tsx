@@ -25,9 +25,7 @@ export function Register() {
       email: data.email,
     };
     instant
-      .post(UserUrl.create, dataUser, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      .post(UserUrl.create, dataUser)
       .then(() => {
         alert("You are now one of us !!");
       })
