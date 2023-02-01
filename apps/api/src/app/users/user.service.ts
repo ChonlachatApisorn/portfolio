@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { UserData, UserDocument } from "./schema/user.schema";
@@ -17,6 +17,14 @@ export class UserService {
   ) {}
 
   async create(dto: UserDto) {
+    const checkUser = await this.model.findOne({ username: dto.username });
+    if (checkUser) {
+      throw new BadRequestException("Username has already");
+    }
+    const checkEmail = await this.model.findOne({ email: dto.email });
+    if (checkEmail) {
+      throw new BadRequestException("Email has already");
+    }
     const salt = await bcrypt.genSalt();
     return this.model.create({
       ...dto,

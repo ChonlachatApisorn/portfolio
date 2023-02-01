@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -28,8 +29,12 @@ export class UserController {
   ) {}
 
   @Post("create")
-  create(@Body() dto: UserDto) {
-    return this.service.create(dto);
+  async create(@Body() dto: UserDto) {
+    const dataCreate = await this.service.create(dto);
+    const userId = dataCreate._id.toString();
+    const email = dataCreate.email;
+    await this.service.verifyEmail(email, userId);
+    return dataCreate;
   }
 
   @Get("list")
