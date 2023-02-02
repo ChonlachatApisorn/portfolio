@@ -7,7 +7,7 @@ export function Login() {
           <h1 className="text-white font-bold text-4xl font-sans">
             Web Portfolio
           </h1>
-          <p className="text-white mt-1">view detail every portfoilo</p>
+          <p className="text-white mt-1 pl-2">view detail every portfoilo</p>
           <div className="flex justify-center lg:justify-start mt-6">
             <a
               href="*"
@@ -36,18 +36,16 @@ export function Login() {
                 stroke="currentColor"
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                  className="heroicon-ui"
+                  d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z"
                 />
               </svg>
               <input
-                id="email"
+                id="username"
                 className=" pl-2 w-full outline-none border-none"
-                type="email"
-                name="email"
-                placeholder="Email Address"
+                type="text"
+                name="username"
+                placeholder="Username"
               />
             </div>
             <div className="flex items-center border-2 mb-12 py-2 px-3 rounded-2xl ">
