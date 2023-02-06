@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { UserUrl } from "../../../provider/api.constant";
 import { instant } from "../../../provider/axios.instant";
-import { IUser } from "../../interface";
+import { IUser } from "../../../provider/interface";
 
 function UserCard() {
   const [data, setData] = useState([]);

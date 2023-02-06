@@ -1,4 +1,35 @@
+import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { instant } from "../../provider/axios.instant";
+import { AuthUrl } from "../../provider/api.constant";
+import { AuthContext } from "../../context/auth.context";
+
 export function Login() {
+  const [userInput, setUserInput] = useState({
+    username: "",
+    password: "",
+  });
+  const { setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setUserInput({ ...userInput, [e.target.name]: e.target.value });
+  }
+
+  function onSubmit(e: React.FormEvent<EventTarget>) {
+    e.preventDefault();
+    const input = {
+      username: userInput.username,
+      password: userInput.password,
+    };
+    instant
+      .post(AuthUrl.login, input)
+      .then((res) => {
+        localStorage.setItem("Token", JSON.stringify(res.data.access_token));
+      })
+      .then(() => setUser(true))
+      .then(() => navigate("homepage"));
+  }
   return (
     <div className="h-screen flex">
       <div className="lg:flex w-full lg:w-1/2 justify-around items-center bg-[url(https://static.vecteezy.com/system/resources/previews/004/733/033/non_2x/hands-of-a-man-working-on-a-modern-laptop-banking-and-money-themes-on-a-blue-background-in-an-office-free-photo.jpg)] bg-cover bg-no-repeat bg-fixed bg-center">
@@ -20,7 +51,10 @@ export function Login() {
       </div>
       <div className="flex w-full lg:w-1/2 justify-center items-center bg-white space-y-8">
         <div className="w-full px-8 md:px-32 lg:px-24">
-          <form className="bg-white rounded-md shadow-2xl p-5">
+          <form
+            className="bg-white rounded-md shadow-2xl p-5"
+            onSubmit={onSubmit}
+          >
             <h1 className="text-gray-800 font-bold text-2xl mb-1">
               Hello Again!
             </h1>
@@ -41,6 +75,7 @@ export function Login() {
                 />
               </svg>
               <input
+                onChange={handleOnChange}
                 id="username"
                 className=" pl-2 w-full outline-none border-none"
                 type="text"
@@ -62,10 +97,11 @@ export function Login() {
                 />
               </svg>
               <input
+                onChange={handleOnChange}
+                id="password"
                 className="pl-2 w-full outline-none border-none"
                 type="password"
                 name="password"
-                id="password"
                 placeholder="Password"
               />
             </div>
