@@ -4,3 +4,8 @@ export const UserUrl = {
   update: `/user/update/`,
   create: `/user/create`,
 };
+
+export const AuthUrl = {
+  login: `/auth/login`,
+  getUser: `/auth/get-user`,
+};
