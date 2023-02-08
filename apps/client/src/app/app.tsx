@@ -1,10 +1,13 @@
 import Router from "./routes";
 import AuthProvider from "./context/auth.context";
+import { Navbar } from "./components/navbar";
 
 export function App() {
   return (
     <AuthProvider>
-      <Router />
+      <Navbar>
+        <Router />
+      </Navbar>
     </AuthProvider>
   );
 }

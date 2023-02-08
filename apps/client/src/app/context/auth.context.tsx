@@ -16,13 +16,14 @@ function AuthProvider({ children }: PropType) {
     if (token) {
       instant.get(AuthUrl.getUser, {
         headers: {
-          Authorization: `Baerer ${JSON.parse(token)}`,
+          Authorization: `Bearer ${JSON.parse(token)}`,
         },
       });
     } else {
       setUser(false);
     }
   }, [user]);
+  console.log(value);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
