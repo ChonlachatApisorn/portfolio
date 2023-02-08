@@ -11,37 +11,47 @@ function UserCard() {
   }, []);
 
   return (
-    <>
-      {data.map((item: IUser) => (
-        <div className="bg-white drop-shadow-xl border border-gray-50 rounded-xl max-w-sm min-w-[384px] h-44 m-12">
-          <div className="flex justify-end -mt-10 mr-5">
-            {item.profile_image ? (
-              <img
-                className="rounded-full border-2 border-white drop-shadow-lg w-16 h-16"
-                src={item.profile_image}
-                alt={item.username}
-              />
-            ) : (
-              <img
-                className="rounded-full border-2 border-white drop-shadow-lg w-16 h-16"
-                src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
-                alt={item.username}
-              />
-            )}
+    <div className="flex justify-center">
+      <div className="grid grid-cols-4 w-screen">
+        {data.map((item: IUser) => (
+          <div className="flex flex-col justify-center items-center bg-zinc-800 rounded drop-shadow-xl w-52 h-64 m-20">
+            <div className="">
+              {item.profile_image ? (
+                <img
+                  className="rounded-full drop-shadow-xl w-16 h-16"
+                  src={item.profile_image}
+                  alt={item.username}
+                />
+              ) : (
+                <img
+                  className="rounded-full drop-shadow-xl w-16 h-16"
+                  src="https://cdn-icons-png.flaticon.com/512/265/265674.png"
+                  alt={item.username}
+                />
+              )}
+            </div>
+            <div className="mt-10">
+              <span className="text-zinc-200 font-bold">{item.username}</span>
+            </div>
           </div>
-          <span className="text-sm pl-3">{item.username}</span>
-          <p className="text-xs p-3">{item.bio}</p>
-          <div className="flex justify-end mr-3">
-            <a href="#">
-              <div className="flex items-center justify-center rounded-lg text-[10px] bg-sky-500 text-white w-20 h-7">
-                view profile
-              </div>
-            </a>
-          </div>
-        </div>
-      ))}
-    </>
+        ))}
+      </div>
+    </div>
   );
 }
 
 export default UserCard;
+
+// {item.profile_image ? (
+//   <img
+//     className="rounded-full border-2 border-white drop-shadow-lg w-16 h-16"
+//     src={item.profile_image}
+//     alt={item.username}
+//   />
+// ) : (
+//   <img
+//     className="rounded-full border-2 border-white drop-shadow-lg w-16 h-16"
+//     src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+//     alt={item.username}
+//   />
+// )}

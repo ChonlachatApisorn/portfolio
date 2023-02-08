@@ -33,8 +33,8 @@ export function Register() {
   }
 
   return (
-    <div className="h-screen flex">
-      <div className="flex w-full justify-around items-center bg-[url(https://static.vecteezy.com/system/resources/previews/004/733/033/non_2x/hands-of-a-man-working-on-a-modern-laptop-banking-and-money-themes-on-a-blue-background-in-an-office-free-photo.jpg)] bg-cover bg-no-repeat bg-fixed bg-center">
+    <div className="h-screen flex -mt-12">
+      <div className="flex w-full justify-around items-center bg-[url(https://homeguru.homepro.co.th/wp-content/uploads/2020/03/covid-19-1200x630px.jpg)] bg-cover bg-no-repeat bg-fixed bg-center">
         <div className="w-full mx-auto px-20 flex-col space-y-6 bg-black opacity-20 h-screen" />
         <div className="flex w-1/2 justify-center items-cente space-y-8 absolute">
           <div className="w-full px-8 md:px-32 lg:px-24">
@@ -42,10 +42,10 @@ export function Register() {
               className="bg-white rounded-md shadow-2xl p-5"
               onSubmit={handleOnSubmit}
             >
-              <h1 className="text-gray-800 font-bold text-2xl mb-1">
+              <h1 className="text-amber-700 font-bold text-2xl mb-1">
                 You can join us!
               </h1>
-              <p className="text-sm font-normal text-gray-600 mb-8 ml-1">
+              <p className="text-sm font-normal text-amber-600 mb-8 ml-1">
                 Enter your information
               </p>
               <label htmlFor="email" className="text-xs font-semibold ml-2">
@@ -54,7 +54,7 @@ export function Register() {
               <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-400"
+                  className="h-5 w-5 text-zinc-500"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -81,7 +81,7 @@ export function Register() {
               <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-400"
+                  className="h-5 w-5 text-zinc-500"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -106,7 +106,7 @@ export function Register() {
               <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-gray-400"
+                  className="h-5 w-5 text-zinc-500"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -127,14 +127,14 @@ export function Register() {
               </div>
               <button
                 type="submit"
-                className="block w-full bg-sky-600 mt-5 py-2 rounded-2xl hover:bg-sky-700 hover:-translate-y-1 transition-all duration-500 text-white font-semibold mb-2"
+                className="block w-full bg-amber-600 mt-5 py-2 rounded-2xl hover:bg-amber-700 hover:-translate-y-1 transition-all duration-500 text-white font-semibold mb-2"
               >
                 confirm
               </button>
               <div className="flex justify-center mt-4">
                 <a
                   href="login"
-                  className="text-sm ml-2 hover:text-blue-500 cursor-pointer hover:-translate-y-1 duration-500 transition-all"
+                  className="text-sm ml-2 hover:text-amber-500 cursor-pointer hover:-translate-y-1 duration-500 transition-all"
                 >
                   back to login
                 </a>
