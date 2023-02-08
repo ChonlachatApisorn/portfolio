@@ -41,17 +41,3 @@ function UserCard() {
 }
 
 export default UserCard;
-
-// {item.profile_image ? (
-//   <img
-//     className="rounded-full border-2 border-white drop-shadow-lg w-16 h-16"
-//     src={item.profile_image}
-//     alt={item.username}
-//   />
-// ) : (
-//   <img
-//     className="rounded-full border-2 border-white drop-shadow-lg w-16 h-16"
-//     src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
-//     alt={item.username}
-//   />
-// )}
