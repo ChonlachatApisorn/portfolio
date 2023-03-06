@@ -76,7 +76,7 @@
     "@babel/preset-react": "^7.14.5",
     "@nestjs/schematics": "9.0.4",
     "@nestjs/testing": "9.2.1",
-    "@nrwl/cypress": "15.5.3",
+    "@nrwl/cypress": "15.8.5",
     "@nrwl/jest": "15.5.3",
     "@nrwl/react": "15.5.3",
     "@nrwl/workspace": "15.5.3",
